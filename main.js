@@ -101,7 +101,7 @@ function weatherInfo(lat, lon) {
       let currentTemp = document.querySelector(".degrees");
       currentTemp.innerHTML = `${temperature}F <p id="tempConvert">click to convert</p>`;
       //displays the required properties to the appropriate HTML DOM
-      document.querySelector("#timezone").textContent = `Timezone ${timezone}`;
+      document.querySelector("#timezone").textContent = `Timezone: ${timezone}`;
       document.querySelector(
         "#visibility"
       ).innerHTML = `<h4 class="props"><strong>Humidity:</strong> ${humidity}</h4>`;
