@@ -17,9 +17,10 @@ body {
   font-family: sans-serif, Times, serif;
 }
 footer {
+  margin-top: 30px;
   background: black;
   color: white;
-  padding: 20px;
+  padding: 10px;
   font-size: 14px;
   text-align: center;
 }
@@ -88,7 +89,7 @@ button {
   justify-content: space-around;
   align-items: center;
   height: 40vh;
-  width: 42%;
+  width: 44%;
   color: white;
   font-size: 2em;
   font-weight: bold;
@@ -99,7 +100,7 @@ img {
   margin-bottom: -10px;
 }
 #icon {
-  margin-left: 80%;
+  margin-left: 74%;
   height: 250px;
   width: 450px;
 }
