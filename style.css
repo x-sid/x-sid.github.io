@@ -1,0 +1,365 @@
+* {
+  margin: 0px;
+  padding: 0px;
+  border: none;
+}
+body {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  background: rgb(2, 0, 36);
+  background: linear-gradient(
+    90deg,
+    rgba(2, 0, 36, 1) 0%,
+    rgba(9, 9, 121, 1) 29%,
+    rgba(0, 212, 255, 1) 100%
+  );
+  font-family: sans-serif, Times, serif;
+}
+footer {
+  background: black;
+  color: white;
+  padding: 20px;
+  font-size: 14px;
+  text-align: center;
+}
+.pageTop {
+  background: black;
+}
+h1 {
+  text-align: center;
+  color: white;
+  margin-top: 10px;
+  font-size: 3em;
+}
+form {
+  display: inline;
+}
+#hide {
+  display: none;
+}
+#searchBox,
+.suggest {
+  width: 25%;
+  margin-top: 10px;
+  font-size: 16px;
+  margin-left: 36%;
+  margin-bottom: 10px;
+  padding: 5px;
+  border-radius: 5px;
+}
+.suggest {
+  position: relative;
+  cursor: pointer;
+  background: white;
+  margin-top: -8px;
+}
+.suggest:hover {
+  background: black;
+  color: grey;
+  font-weight: bold;
+}
+button {
+  background: black;
+}
+#timezone {
+  text-align: center;
+  margin-top: 10px;
+  color: white;
+  font-size: 2em;
+  font-weight: bold;
+}
+#tempConvert {
+  background: black;
+  color: white;
+  border-radius: 5px;
+  padding: 3px;
+  margin-left: 2px;
+  font-size: 12px;
+}
+#map {
+  margin-left: 5%;
+  width: 90%;
+  height: 60vh;
+  border-radius: 5px;
+}
+#temperature {
+  display: block;
+  justify-content: space-around;
+  align-items: center;
+  height: 40vh;
+  width: 42%;
+  color: white;
+  font-size: 2em;
+  font-weight: bold;
+  margin-top: 10px;
+}
+img {
+  padding: none;
+  margin-bottom: -10px;
+}
+#icon {
+  margin-left: 80%;
+  height: 250px;
+  width: 450px;
+}
+.degrees {
+  justify-content: space-around;
+  align-items: center;
+  width: 8%;
+  color: white;
+  font-size: 2em;
+  font-weight: bold;
+  margin-top: 20px;
+  margin-bottom: 50px;
+  margin-left: 45%;
+  cursor: pointer;
+}
+#visibility,
+#windspeed,
+#desc,
+#postcode {
+  font-family: sans-serif, Times, serif;
+  margin: 10px 30%;
+}
+#desc {
+  font-size: 2px;
+}
+.props {
+  text-align: center;
+  background: black;
+  color: white;
+  padding: 3px;
+  font-size: 15px;
+  border-radius: 5px;
+}
+
+@media screen and (max-width: 1280px) {
+  #temperature {
+    width: 40%;
+    height: 45vh;
+  }
+  #searchBox {
+    font-size: 15px;
+  }
+  #icon {
+    height: 350px;
+    width: 450px;
+  }
+  .props,
+  #desc {
+    padding: 2px;
+    font-size: 1.3em;
+    border-radius: 5px;
+  }
+  .degrees {
+    width: 10%;
+    margin-bottom: 50px;
+    margin-left: 45%;
+  }
+  #searchBox,
+  .suggest {
+    font-size: 20px;
+    padding: 5px;
+  }
+  #tempConvert {
+    font-size: 0.5em;
+  }
+  #map {
+    margin-left: 5%;
+    width: 90%;
+    height: 50vh;
+  }
+  #timezone {
+    font-size: 2.5em;
+  }
+}
+
+@media screen and (max-width: 959px) {
+  #searchBox {
+    font-size: 14px;
+  }
+  body {
+    width: 100%;
+  }
+  #temperature {
+    width: 40%;
+    height: 30vh;
+  }
+  #map {
+    margin-left: 5%;
+    width: 90%;
+    height: 40vh;
+  }
+  h1 {
+    font-size: 2em;
+    text-align: center;
+  }
+  #icon {
+    height: 250px;
+    width: 350px;
+  }
+  #visibility,
+  #windspeed,
+  #desc,
+  #postcode {
+    font-size: 0.9em;
+    margin: 10px 10%;
+  }
+  #timezone {
+    text-align: center;
+    font-size: 1.6em;
+  }
+
+  .props {
+    padding: 2px;
+    margin-left: 2px;
+    font-size: 1.2em;
+  }
+  .degrees {
+    width: 13%;
+    font-size: 2em;
+    margin-top: 20px;
+    margin-top: 100px;
+    margin-bottom: 50px;
+    margin-left: 45%;
+  }
+}
+@media screen and (max-width: 800px) {
+  .degrees {
+    width: 15%;
+  }
+  #map {
+    margin-left: 5%;
+    width: 90%;
+    height: 60vh;
+  }
+  #temperature {
+    width: 45%;
+    height: 30vh;
+  }
+  #icon {
+    height: 200px;
+    width: 250px;
+  }
+  #visibility,
+  #windspeed,
+  #desc,
+  #postcode {
+    margin: 10px 15%;
+    font-size: 0.8em;
+  }
+  #searchBox {
+    font-size: 14px;
+  }
+}
+
+@media screen and (max-width: 680px) {
+  #icon {
+    height: 200px;
+    width: 250px;
+  }
+  #tempConvert {
+    font-size: 0.4em;
+  }
+  #timezone {
+    font-size: 1.4em;
+  }
+  #temperature {
+    width: 35%;
+    height: 35vh;
+  }
+  .degrees {
+    margin-left: 40%;
+    width: 18%;
+  }
+  #map {
+    margin-left: 5%;
+    width: 90%;
+    height: 50vh;
+  }
+  #visibility,
+  #windspeed,
+  #desc,
+  #postcode {
+    font-family: sans-serif, Times, serif;
+    margin: 10px 10%;
+    font-size: 1em;
+  }
+  .props {
+    font-size: 1em;
+  }
+  #searchBox,
+  .suggest {
+    width: 50%;
+    font-size: 14px;
+    margin-left: 20%;
+    padding: 5px;
+  }
+}
+
+@media screen and (max-width: 450px) {
+  #searchBox,
+  .suggest {
+    width: 50%;
+    font-size: 14px;
+    margin-left: 20%;
+    padding: 5px;
+  }
+  footer {
+    display: none;
+  }
+  #timezone {
+    font-size: 1.5em;
+  }
+  #icon {
+    height: 150px;
+    width: 250px;
+  }
+  #temperature {
+    width: 18%;
+    height: 10vh;
+  }
+  .degrees {
+    font-size: 2em;
+    margin-left: 35%;
+    width: 25%;
+  }
+  #map {
+    width: 90%;
+    height: 40vh;
+  }
+  #visibility,
+  #windspeed,
+  #desc,
+  #postcode {
+    font-family: sans-serif, Times, serif;
+    margin: 10px 10%;
+  }
+  .props {
+    font-size: 1.1em;
+  }
+}
+@media screen and (max-width: 320px) {
+  body {
+    width: 320px;
+  }
+  .props {
+    font-size: 0.8em;
+  }
+  #searchBox,
+  .suggest {
+    width: 50%;
+    font-size: 12px;
+    margin-left: 20%;
+    padding: 3px;
+  }
+  .degrees {
+    margin-left: 35%;
+    width: 25%;
+    font-size: 1.3em;
+  }
+  footer {
+    display: none;
+  }
+}
