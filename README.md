@@ -10,8 +10,8 @@
 
 <p> This app uses axios to make API calls and the API consumed by this app are as follows;</p>
 
-1. [LocationIQ API]("https://loactioniq.com")
-1. [DarkSky API]("https://darksky.net")
+1. [LocationIQ API](https://loactioniq.com)
+1. [DarkSky API](https://darksky.net)
 1. Live server
 
 <strong>LocationIQ API:</strong> This API provides the map and geolocation data required for this app.
