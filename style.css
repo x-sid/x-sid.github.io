@@ -63,6 +63,9 @@ form {
 button {
   background: black;
 }
+button:hover {
+  cursor: pointer;
+}
 #timezone {
   text-align: center;
   margin-top: 10px;

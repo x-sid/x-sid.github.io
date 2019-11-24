@@ -10,9 +10,9 @@
 
 <p> This app uses axios to make API calls and the API consumed by this app are as follows;</p>
 
-1. LocationIQ API
-1. DarkSky API
-1. Liver server
+1. [LocationIQ API]("https://loactioniq.com")
+1. [DarkSky API]("https://darksky.net")
+1. Live server
 
 <strong>LocationIQ API:</strong> This API provides the map and geolocation data required for this app.
 <strong>DarkSky API:</strong> This API provides all the neccessary weather information needed e.g temperature,timzone,humidity,windspeed,current weather etc.

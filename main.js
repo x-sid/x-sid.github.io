@@ -6,9 +6,10 @@ const inputValue = searchBox.value;
 
 //an event listener that lsitens for a submit action
 searchBox.addEventListener("input", () => {
-  let inputValue = searchBox.value;
-  //an api call with the user request
-  let api = "https://api.locationiq.com/v1/autocomplete.php?";
+  const inputValue = searchBox.value;
+
+  //an api call with the user request to an autocomplete endpoint
+  const api = "https://api.locationiq.com/v1/autocomplete.php?";
   axios
     .get(api, {
       params: {
@@ -22,10 +23,10 @@ searchBox.addEventListener("input", () => {
 
     //recieves the data returned from the api call
     .then(res => {
-      let inputValue = searchBox.value;
-      let places = res.data;
+      const inputValue = searchBox.value;
+      const places = res.data;
       let suggest;
-      let autoComplete = document.querySelector("#autoComplete");
+      const autoComplete = document.querySelector("#autoComplete");
 
       if (inputValue.length !== 0) {
         //suggests an auto complete based on user input and displays it to the UI
@@ -46,6 +47,7 @@ searchBox.addEventListener("input", () => {
         item.addEventListener("click", e => {
           searchBox.value = e.target.innerHTML;
           autoComplete.innerHTML = "";
+          makeApiCalls();
         });
       });
       document.querySelector("body").addEventListener("click", () => {
@@ -58,7 +60,14 @@ searchBox.addEventListener("input", () => {
 const addressForm = document.getElementById("addressForm");
 addressForm.addEventListener("submit", e => {
   e.preventDefault();
-  let location = searchBox.value;
+  //makes an api call to several api and returns a response which is displayed in the UI
+  makeApiCalls();
+});
+
+function makeApiCalls() {
+  const location = searchBox.value;
+
+  //an api call to get the latitude and longitude of input string
   axios
     .get("https://us1.locationiq.com/v1/search.php?", {
       params: {
@@ -68,19 +77,38 @@ addressForm.addEventListener("submit", e => {
       }
     })
     .then(response => {
-      let { lat, lon } = response.data[0];
+      //latitude and longitude returned
+      const { lat, lon } = response.data[0];
 
-      displayMap(lat, lon);
+      //adds marker to map location
+      L.marker([lat, lon]).addTo(map);
+      //centers the map based on search
+      map.setView({ lat: lat, lon: lon }, 10);
       weatherInfo(lat, lon);
       setIcon(lat, lon);
       postCode(lat, lon);
     });
+}
+
+// Maps access token goes here
+const key = "pk.4482eea469b93346d01c60da10de2878";
+// Add layers that we need to the map
+const streets = L.tileLayer.Unwired({ key: key, scheme: "streets" });
+// Initialize the map
+const map = L.map("map", {
+  center: { lat: 9.081999, lon: 8.675277000000051 }, // Map loads with this location as center
+  zoom: 5,
+  scrollWheelZoom: true,
+  layers: [streets] // Show 'streets' by default
 });
+// Add the 'scale' control
+L.control.scale().addTo(map);
 
 //function that grabs weather info from an api
 function weatherInfo(lat, lon) {
-  let proxy = "https://cors-anywhere.herokuapp.com/";
-  let api = `${proxy}https://api.darksky.net/forecast/e3968dcc1c744f252da0bd34d9ae19e9/${lat},${lon}`;
+  const proxy = "https://cors-anywhere.herokuapp.com/";
+  // an api call to a weather api
+  const api = `${proxy}https://api.darksky.net/forecast/e3968dcc1c744f252da0bd34d9ae19e9/${lat},${lon}`;
   axios
     .get(api, {
       params: { crossDomain: true }
@@ -88,20 +116,20 @@ function weatherInfo(lat, lon) {
 
     .then(res => {
       //returned weather properties from the call to the api
-      let {
+      const {
         temperature,
         summary,
         icon,
         humidity,
         windSpeed
       } = res.data.currently;
-      let timezone = res.data.timezone;
+      const timezone = res.data.timezone;
       setIcon(icon, document.querySelector("#icon"));
-      let celcius = ((temperature - 32) * 5) / 9;
-      let currentTemp = document.querySelector(".degrees");
+      const celcius = ((temperature - 32) * 5) / 9;
+      const currentTemp = document.querySelector(".degrees");
       currentTemp.innerHTML = `${temperature}F <p id="tempConvert">click to convert</p>`;
       //displays the required properties to the appropriate HTML DOM
-      document.querySelector("#timezone").textContent = `Timezone: ${timezone}`;
+      document.querySelector("#timezone").textContent = `Timezone ${timezone}`;
       document.querySelector(
         "#visibility"
       ).innerHTML = `<h4 class="props"><strong>Humidity:</strong> ${humidity}</h4>`;
@@ -122,7 +150,9 @@ function weatherInfo(lat, lon) {
       });
     })
     .catch(error => {
-      console.log(error.message);
+      document.querySelector(
+        "#desc"
+      ).innerHTML = `<h4 class="props" style="color:red,margin-top:0px;"><i>search limit for this moment has been reached please try again after a while.</i></h4>`;
     });
 }
 
@@ -135,29 +165,6 @@ function setIcon(icon, iconId) {
   return skycons.set(iconId, Skycons[currentIcon]);
 }
 
-//a function that display the map to the UI
-function displayMap(lat, lon) {
-  // Maps access token goes here
-  var key = "pk.4482eea469b93346d01c60da10de2878";
-
-  // Add layers that we need to the map
-  var streets = L.tileLayer.Unwired({ key: key, scheme: "streets" });
-
-  // Initialize the map
-  var map = L.map("map", {
-    center: { lat: lat, lng: lon }, // Map loads with this location as center
-    zoom: 10,
-    scrollWheelZoom: true,
-    layers: [streets] // Show 'streets' by default
-  });
-
-  //Add maker
-  var marker = L.marker([lat, lon]).addTo(map);
-
-  // Add the 'scale' control
-  L.control.scale().addTo(map);
-}
-
 //it grabs the postcode code based on user search
 function postCode(lat, lon) {
   axios
@@ -165,9 +172,11 @@ function postCode(lat, lon) {
       `https://us1.locationiq.com/v1/reverse.php?key=3180628f7bc8ea&lat=${lat}&lon=${lon}&format=json`
     )
     .then(res => {
-      let postCode = res.data.address.postcode;
+      const postCode = res.data.address.postcode;
       document.querySelector(
         "#postcode"
-      ).innerHTML = `<h4 class="props"><strong>Postcode:</strong> ${postCode}</h4>`;
+      ).innerHTML = `<h4 class="props"><strong>Postcode:</strong> ${
+        postCode ? postCode : "Unknown"
+      }</h4>`;
     });
 }
